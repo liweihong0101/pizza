@@ -31,10 +31,10 @@ export default {
         height: 85vh;
         padding: 10%;
     }
-    h1,h2 {
+    #home h1,h2 {
         margin: 6%;
     }
-    .background {
+    #home .background {
         background: #eee;
         opacity: .8;
         max-width: 70vw;
