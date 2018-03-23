@@ -23,7 +23,7 @@
                                     v-model="password"
                                 >
                         </div>
-                        <button type="button" name="button" class="btn btn-block btn-success">登录</button>
+                        <button class="btn btn-block btn-success">登录</button>
                     </form>
                 </div>
             </div>
@@ -32,15 +32,34 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
-  name: "",
   data: () => ({
       email: '',
       password: ''
   }),
   methods: {
     onSubmit() {
+        axios.get('/users.json')
+             .then(res=>{
+                 const data = res.data;
+                 const users = [];
+                 for(let key in data){
+                     const user = data[key];
+                     users.push(user);
+                 }
 
+                 //实现过滤
+                 let result = users.filter((user) => {
+                     return user.email == this.email && user.password == this.password;
+                 });
+                 if(result.length > 0){
+                     alert('登陆成功');
+                     this.$router.push('/');
+                 }else{
+                     alert('登录失败，请检查邮箱和密码是否正确!')
+                 }
+             })
     }
   }
 }
