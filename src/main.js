@@ -2,25 +2,28 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import {routes} from './routes'
+import axios from 'axios'
 Vue.use(VueRouter);
+
+axios.defaults.baseURL = 'https://wd4561535768olqhyf.wilddogio.com/'
 const router = new VueRouter({
   mode: 'history',
   routes,
-  scrollBehavior(to, from, savePosition){
-      // return {
-      //     x: 0,
-      //     y: 100,
-      // },
-      // return {selector: '.btn'}
-      if(savePosition){
-          return savePosition
-      }else{
-          return {
-              x: 0,
-              y: 100,
-          }
-      }
-  }
+  // scrollBehavior(to, from, savePosition){
+  //     // return {
+  //     //     x: 0,
+  //     //     y: 100,
+  //     // },
+  //     // return {selector: '.btn'}
+  //     // if(savePosition){
+  //     //     return savePosition
+  //     // }else{
+  //     //     return {
+  //     //         x: 0,
+  //     //         y: 100,
+  //     //     }
+  //     // }
+  // }
 })
 
 //全局守卫
