@@ -38,6 +38,12 @@ export default {
       email: '',
       password: ''
   }),
+
+  //组件内的守卫
+  beforeRouteEnter: (to,from, next)=>{
+      // this.$store.dispatch('setUser', null);
+      next(vm => vm.$store.dispatch('setUser', null))
+  },
   methods: {
     onSubmit() {
         axios.get('/users.json')
@@ -55,9 +61,11 @@ export default {
                  });
                  if(result.length > 0){
                      alert('登陆成功');
+                     this.$store.dispatch('setUser', result[0].email);
                      this.$router.push('/');
                  }else{
                      alert('登录失败，请检查邮箱和密码是否正确!')
+                     this.$store.dispatch('setUser', null);
                  }
              })
     }

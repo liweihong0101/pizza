@@ -3,9 +3,14 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import {routes} from './routes'
 import axios from 'axios'
+
+import {store} from './store/store.js'
 Vue.use(VueRouter);
 
+//配置默认根路径
 axios.defaults.baseURL = 'https://wd4561535768olqhyf.wilddogio.com/'
+//配置Vue原型
+Vue.prototype.http = axios
 const router = new VueRouter({
   mode: 'history',
   routes,
@@ -44,5 +49,6 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })
